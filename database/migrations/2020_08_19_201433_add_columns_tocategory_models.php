@@ -13,7 +13,7 @@ class AddColumnsTocategoryModels extends Migration
      */
     public function up()
     {
-        Schema::table('category_models', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->integer('user_id');
         });
     }

@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $category = new CategoryModel();
         $category->name = request('name');
         $category->status = request('status');
-        $category->user_id = auth()->user()->id;
+        //$category->user_id = auth()->user()->id;
         $category->save();
 
         return back()->with('catsaved','Category created successfully!');

@@ -17,7 +17,7 @@ class CreateExpensTable extends Migration
             $table->increments('id');
             $table->char('narration', 255);
             $table->char('amount', 10);
-            $table->bigInteger('category', 2);
+            $table->bigInteger('category');
             $table->timestamps();
         });
     }
