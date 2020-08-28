@@ -81,24 +81,35 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header"><nav class="navbar navbar-expand-lg navbar-light bg-light">
-                                    <a class="navbar-brand" href="#">Navbar</a>
+                            <div class="card-header">
+                                <nav class="navbar navbar-expand-lg navbar-light bg-light">
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
+
                                     <div class="collapse navbar-collapse" id="navbarNav">
                                         <ul class="navbar-nav">
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="{{'newcat'}}">New Category <span class="sr-only">(current)</span></a>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Expenses
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="{{'newexpense'}}">Record new expenditure</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="{{'listexpenses'}}">List Expenses</a>
+                                                </div>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{'listcategories'}}">List Categories</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Pricing</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link disabled" href="#">Disabled</a>
+
+
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Categories
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="{{'newcat'}}">Create new category</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="{{'listcategories'}}">List categories</a>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,8 @@ Route::post('/savecat', 'CategoryController@store')->name('storecat');
 Route::get('/listcategories', 'CategoryController@index')->name('listcategories')->middleware('auth');
 Route::get('/newexpense', 'ExpenseController@create')->name('newexpense')->middleware('auth');
 Route::post('/storeexpense', 'ExpenseController@store')->name('storeexpense')->middleware('auth');
+Route::get('/listexpenses', 'ExpenseController@index')->name('listexpenses')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

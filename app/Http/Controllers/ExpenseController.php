@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use App\CategoryModel;
 
 use App\Expense;
@@ -15,7 +16,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+        $expenses = DB::table('expenses')->paginate(20);
+        return view('expenses.listexpenses', ['expenses' => $expenses]);
+
     }
 
     /**
