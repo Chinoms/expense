@@ -27,6 +27,9 @@ Route::get('/listcategories', 'CategoryController@index')->name('listcategories'
 Route::get('/newexpense', 'ExpenseController@create')->name('newexpense')->middleware('auth');
 Route::post('/storeexpense', 'ExpenseController@store')->name('storeexpense')->middleware('auth');
 Route::get('/listexpenses', 'ExpenseController@index')->name('listexpenses')->middleware('auth');
+Route::get('/createreport', 'CategoryController@createreport')->name('createreport')->middleware('auth');
+Route::post('/generatereport', 'ExpenseController@expenseReport')->name('expensereport')->middleware('auth');
+
 
 Auth::routes();
 

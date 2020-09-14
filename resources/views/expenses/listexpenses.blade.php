@@ -23,15 +23,20 @@
     <tbody>
         <?php $sn = 1; ?>
         @foreach($expenses as $expense)
-        <?php $sn =$sn++; ?>
+        @php
+        $expenseTime = \Carbon\Carbon::parse($expense->created_at);
+        $timeofExpense = $expenseTime->format('d-M-Y');
+        @endphp
         <tr>
         <td>{{$sn}}</td>
         <td>{{ $expense->narration }}</td>
         <td>{{ number_format($expense->amount) }}</td>
-        <td>{{ $expense->category }}</td>
-        <td>{{ $expense->created_at }}</td>
+        <td>{{ $expense->categories->name }}</td>
+        <td>{{ $timeofExpense }}</td>
         </tr>
-        @php $sn++; @endphp
+        <?php
+        $sn++;
+        ?>
         @endforeach
     </tbody>
 </table>

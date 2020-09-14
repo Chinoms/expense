@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use App\CategoryModel;
 
@@ -16,9 +17,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = DB::table('expenses')->paginate(20);
+        $expenses = Expense::paginate(20);
         return view('expenses.listexpenses', ['expenses' => $expenses]);
-
     }
 
     /**
@@ -30,7 +30,7 @@ class ExpenseController extends Controller
     {
         $cats = CategoryModel::all();
         return view('expenses.newexpense', compact('cats'));
-       // return view('expenses/newexpense');
+        // return view('expenses/newexpense');
     }
 
     /**
@@ -47,7 +47,7 @@ class ExpenseController extends Controller
         $expense->category = request('category');
         $expense->save();
 
-        return back()->with('expensesaved','New expenditure recorded successfully!');
+        return back()->with('expensesaved', 'New expenditure recorded successfully!');
     }
 
     /**
@@ -93,5 +93,22 @@ class ExpenseController extends Controller
     public function destroy(Expense $expense)
     {
         //
+    }
+
+    public function expenseReport(Request $request)
+    {
+
+        $expenseDates = new Expense();
+        $expenseDates->start = request('start');
+        $expenseDates->end = request('end');
+
+        $reports = DB::table('expenses')
+            ->join('categories', 'expenses.category', '=', 'categories.id')
+            ->select(DB::raw('SUM(amount) as total_amount, category, categories.name'))
+            ->whereBetween('expenses.created_at', [$expenseDates->start, $expenseDates->end])
+            ->groupBy('category', 'categories.name')
+            ->orderby('total_amount', 'DESC')
+            ->get();
+            return view('expenses.generatereport', ['reports' => $reports]);
     }
 }
