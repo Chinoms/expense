@@ -39,11 +39,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new CategoryModel();
-        $category->name = request('name');
-        $category->status = request('status');
-        //$category->user_id = auth()->user()->id;
-        $category->save();
+       
+        $request->validate([
+            'name' => ["required", "unique:categories"],
+            'status' => ["required"],
+        ]);
+
+         // $category = new CategoryModel();
+        // $category->name = request('name');
+        // $category->status = request('status');
+        // //$category->user_id = auth()->user()->id;
+        // $category->save();
 
         return back()->with('catsaved', 'Category created successfully!');
     }

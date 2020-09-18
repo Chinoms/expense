@@ -42,7 +42,7 @@
 
         <!-- Select Basic -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="status">Status</label>
+            <label class="col-md-4 control-label" for="status">Category</label>
             <div class="col-md-5">
                 <select id="category" name="category" class="form-control">
                     @foreach($cats as $cat)
