@@ -45,11 +45,11 @@ class CategoryController extends Controller
             'status' => ["required"],
         ]);
 
-         // $category = new CategoryModel();
-        // $category->name = request('name');
-        // $category->status = request('status');
+        $category = new CategoryModel();
+        $category->name = request('name');
+        $category->status = request('status');
         // //$category->user_id = auth()->user()->id;
-        // $category->save();
+        $category->save();
 
         return back()->with('catsaved', 'Category created successfully!');
     }
