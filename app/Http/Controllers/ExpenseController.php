@@ -41,6 +41,10 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'narration' => ["required"],
+            'amount' => ["min:1", "numeric", "required"],
+        ]);
         $expense = new Expense();
         $expense->narration = request('narration');
         $expense->amount = request('amount');

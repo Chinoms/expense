@@ -12,6 +12,16 @@
     <strong>{{ $message }}</strong>
 </div>
 @endif
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form class="form-horizontal" method="post" action="{{ route('storeexpense') }}">
     @csrf
     <fieldset>
@@ -23,7 +33,7 @@
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="name">Category name</label>
+            <label class="col-md-4 control-label" for="name">Narration</label>
             <div class="col-md-5">
                 <input id="name" name="narration" type="text" placeholder="Narration" class="form-control input-md" required="">
 
@@ -46,7 +56,7 @@
             <div class="col-md-5">
                 <select id="category" name="category" class="form-control">
                     @foreach($cats as $cat)
-                    <option value="{{$cat->id}}">{{$cat->name}}<option>
+                    <option value="{{$cat->id}}">{{$cat->name}}</option>
                     @endforeach
                 </select>
             </div>
