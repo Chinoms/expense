@@ -12,7 +12,6 @@
         <th>Total Expenditure</th>
         <th>Status</th>
         <th>Date Created</th>
-        <th>Action</th>
         <tbody>
 
             <?php
@@ -38,9 +37,6 @@
                 </td>
                 <td>
                     {{$time}}
-                </td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
                 </td>
             </tr>
             <?php

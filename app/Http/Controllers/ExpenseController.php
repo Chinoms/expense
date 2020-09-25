@@ -33,6 +33,15 @@ class ExpenseController extends Controller
         // return view('expenses/newexpense');
     }
 
+
+    public function reportforCategories()
+    {
+        $cats = CategoryModel::all();
+        return view('categories.categoryreport', compact('cats'));
+        // return view('expenses/newexpense');
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -103,8 +112,9 @@ class ExpenseController extends Controller
     {
 
         $expenseDates = new Expense();
-        $expenseDates->start = request('start');
-        $expenseDates->end = request('end');
+        $expenseDates->start = request('start') . " " . "00:0:00";
+        $expenseDates->end = request('end') . " " . "23:59:00";
+        //return $expenseDates;
 
         $reports = DB::table('expenses')
             ->join('categories', 'expenses.category', '=', 'categories.id')
@@ -113,6 +123,22 @@ class ExpenseController extends Controller
             ->groupBy('category', 'categories.name')
             ->orderby('total_amount', 'DESC')
             ->get();
-            return view('expenses.generatereport', ['reports' => $reports]);
+
+        return view('expenses.generatereport', ['reports' => $reports]);
+    }
+
+    public function expenseReportByCategory(Request $request)
+    {
+        $expenseDates = new Expense();
+        $expenseDates->start = request('start') . " " . "00:0:00";
+        $expenseDates->end = request('end') . " " . "23:59:00";
+        $category = request('category');
+
+        $reportsbyCategory = DB::table('expenses')
+            ->where('category', '=', $category)
+            ->get();
+           // return $reportsbyCategory;
+
+        return view('categories.reportbycategory', ['reportsbyCategory' => $reportsbyCategory]);
     }
 }

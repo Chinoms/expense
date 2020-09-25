@@ -39,7 +39,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $request->validate([
             'name' => ["required", "unique:categories"],
             'status' => ["required"],
@@ -107,6 +107,10 @@ class CategoryController extends Controller
         return view('categories.createreport');
     }
 
+    public function categoryReport()
+    {
+        return view('categories.categoryreport');
+    }
 
     /***
     public function generatereport(Request $request)
@@ -132,21 +136,21 @@ class CategoryController extends Controller
     public function expenseReport(Request $request)
     {
         $expenseDates = new CategoryModel();
-        $expenseDates->start = request('start');
-        $expenseDates->end = request('end');
+        $expenseDates->start = request('start') . " " . date("h:i:s");
+        $expenseDates->end = request('end') . " " . "11:59:00";
         //return($expenseDates);
 
-         $reports = DB::table('expenses')
-        ->whereBetween('created_at', [$expenseDates->start, $expenseDates->end])
-        ->get();
+        $reports = DB::table('expenses')
+            ->whereBetween('created_at', [$expenseDates->start, $expenseDates->end])
+            ->get();
         return $reports;
 
 
-      //$reports = CategoryModel::paginate(20);
-            //->whereBetween('created_at', [$expenseDates->start, $expenseDates->end])
-            //->groupBy('id');
+        //$reports = CategoryModel::paginate(20);
+        //->whereBetween('created_at', [$expenseDates->start, $expenseDates->end])
+        //->groupBy('id');
 
-            $reports = DB::table('categories')
+        $reports = DB::table('categories')
             ->join('expenses', 'expenses.category', '=', 'categories.id')
             ->select('categories.id', 'categories.name', 'expenses.category', 'expenses.amount')
             ->get();

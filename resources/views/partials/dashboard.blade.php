@@ -111,8 +111,16 @@
                                                     <a class="dropdown-item" href="{{'listcategories'}}">List categories</a>
                                                 </div>
                                             </li>
-                                            <li class="nav-link">
-                                                <a class="dropdown-item" href="{{'createreport'}}">Generate Report</a>
+
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Reports
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="{{'createreport'}}">Report by Category</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="{{'categoryreport'}}">General Reporting</a>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>
